@@ -1,39 +1,38 @@
 <h1 align="center">
-  <img src="assets/Linux-bootstrap-logo.png" alt="icon" width="200"></img>
+  <img src="assets/miller-rabin-logo.png" alt="icon" width="200"></img>
   <br>
   <b>Miller Rabin</b>
-  <span>Primality test</span>
 </h1>
 
 <p align="center">Probabilistic Primality test.</p>
 
 <!-- Badges -->
 <p align="center">
-  <a href="https://github.com/QuanBlue/linux-auto-setup/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/QuanBlue/linux-auto-setup" alt="contributors" />
+  <a href="https://github.com/QuanBlue/miller-rabin/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/QuanBlue/miller-rabin" alt="contributors" />
   </a>
   <a href="">
-    <img src="https://img.shields.io/github/last-commit/QuanBlue/linux-auto-setup" alt="last update" />
+    <img src="https://img.shields.io/github/last-commit/QuanBlue/miller-rabin" alt="last update" />
   </a>
-  <a href="https://github.com/QuanBlue/linux-auto-setup/network/members">
-    <img src="https://img.shields.io/github/forks/QuanBlue/linux-auto-setup" alt="forks" />
+  <a href="https://github.com/QuanBlue/miller-rabin/network/members">
+    <img src="https://img.shields.io/github/forks/QuanBlue/miller-rabin" alt="forks" />
   </a>
-  <a href="https://github.com/QuanBlue/linux-auto-setup/stargazers">
-    <img src="https://img.shields.io/github/stars/QuanBlue/linux-auto-setup" alt="stars" />
+  <a href="https://github.com/QuanBlue/miller-rabin/stargazers">
+    <img src="https://img.shields.io/github/stars/QuanBlue/miller-rabin" alt="stars" />
   </a>
-  <a href="https://github.com/QuanBlue/linux-auto-setup/issues/">
-    <img src="https://img.shields.io/github/issues/QuanBlue/linux-auto-setup" alt="open issues" />
+  <a href="https://github.com/QuanBlue/miller-rabin/issues/">
+    <img src="https://img.shields.io/github/issues/QuanBlue/miller-rabin" alt="open issues" />
   </a>
-  <a href="https://github.com/QuanBlue/linux-auto-setup/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/QuanBlue/linux-auto-setup.svg" alt="license" />
+  <a href="https://github.com/QuanBlue/miller-rabin/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/QuanBlue/miller-rabin.svg" alt="license" />
   </a>
 </p>
 
 <p align="center">
   <b>
-    <a href="https://github.com/QuanBlue/linux-auto-setup">Documentation</a> •
-    <a href="https://github.com/QuanBlue/linux-auto-setup/issues/">Report Bug</a> •
-    <a href="https://github.com/QuanBlue/linux-auto-setup/issues/">Request Feature</a>
+    <a href="https://github.com/QuanBlue/miller-rabin">Documentation</a> •
+    <a href="https://github.com/QuanBlue/miller-rabin/issues/">Report Bug</a> •
+    <a href="https://github.com/QuanBlue/miller-rabin/issues/">Request Feature</a>
   </b>
 </p>
 
@@ -42,96 +41,60 @@
 <details open>
 <summary>Table of Contents</summary>
 
-- [Usage](#usage)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Run Locally](#run-locally)
 - [Roadmap](#roadmap)
 - [Contributors](#contributors)
-  - [License](#license)
-
-# Usage
-
-File `bootstrap.sh` will find all `setup.sh` files in all directories and run it. Then using `apt`, `snap`,... to install other packages.
-
-Each directory will have a
-
--  `README.md` file to explain what it does and how to customize.
--  `setup.sh` file to install packages.
+- [Credits](#credits)
+- [License](#license)
 
 # Getting Started
 
 ## Prerequisites
 
--  Install `Git` on your system:
+Before proceeding with the installation and usage of this project, ensure that you have the following prerequisites in place:
 
-   ```bash
-   sudo apt-get install git
-   ```
-
--  Bash shell support.
--  Enter Super User mode:
-
-   ```bash
-   sudo su
-   ```
+-  **g++**: the GNU C++ complier, install [here for VSCode](https://code.visualstudio.com/docs/cpp/config-mingw)
 
 ## Run Locally
 
-**Step 1:** Auto install
-
-Clone the project
+**Step 1:** Compile program, it will generate `miller_rabin` file (executable file) from `miller_rabin.cpp`:
 
 ```bash
-git clone https://github.com/QuanBlue/linux-auto-setup
+g++ -o miller_rabin miller_rabin.cpp
 ```
 
-Go to the project directory
+**Step 2:** Run executable file:
 
 ```bash
-cd linux-auto-setup
+./miller_rabin
 ```
-
-Enter `Super user` mode:
-
-```bash
-sudo su
-```
-
-Run the `install` script
-
-```bash
-bash ./install.sh
-```
-
-**Step 2:** manually custom installed theme, using:
-
--  **`Tweaks (Gnome-tweaks)`** and custom: `icon`, `cursor`, `background`
--  **`Extensions (Gnome-shell-extensions)`** and custom: installed `extensions`
--  **`Setting`** and custom: `Key board shortcut`, `Startup application`, `Power`,...
--  Set up `Onedrive`:
-   Follow this document from [How to Launch OneDrive on Ubuntu 22.04?](https://itslinuxfoss.com/install-use-onedrive-ubuntu-22-04/)
-
-   ```bash
-   systemctl --user stop onedrive
-   onedrive --synchronize --resync
-   systemctl --user start onedrive
-   ```
 
 # Roadmap
 
--  [x] Auto install package
--  [ ] Selection package menu
+-  [x] Miller Rabin algorithm
+-  [ ] Handle Big number
+-  [ ] Benchmark
 
 # Contributors
 
-<a href="https://github.com/QuanBlue/linux-auto-setup/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=QuanBlue/linux-auto-setup" />
+<a href="https://github.com/QuanBlue/miller-rabin/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=QuanBlue/miller-rabin" />
 </a>
 
 Contributions are always welcome!
 
-## License
+# Credits
+
+-  [Miller-Rabin algorithm](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test)
+-  [Cpp](https://www.cplusplus.com/)
+-  [g++](https://gcc.gnu.org/)
+-  [List of small prime](https://t5k.org/lists/small/)
+-  [Generate prime](https://bigprimes.org/)
+-  [Test is prime online](https://www.dcode.fr/primality-test)
+
+# License
 
 Distributed under MIT license. See
 [LICENSE](./LICENSE) for more
