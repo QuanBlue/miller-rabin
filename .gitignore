@@ -2,3 +2,6 @@
 
 # executable file
 miller_rabin
+
+# dataset
+dataset/billion-primes.txt

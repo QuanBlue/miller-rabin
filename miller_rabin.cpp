@@ -97,7 +97,7 @@ bool miller_rabin(long long n)
 // >>>>>> Benchmark <<<<<
 void benchmark()
 {
-   cout << "\n\n  Benchmarking..." << endl;
+   cout << "Benchmarking... " << flush;
 
    double total_runtime = 0;
    int total_correct = 0;
@@ -110,7 +110,7 @@ void benchmark()
 
    if (!file.is_open())
    {
-      cout << "  [!] Datasets file does not exist." << endl;
+      cout << "[!] Datasets file does not exist." << endl;
       file.close();
       return;
    }
@@ -140,20 +140,20 @@ void benchmark()
          prime = stoll(line);
 
       total_runtime += runtime.count();
-
-      // Print the number and whether it's prime
-      // cout << "Prime: " << prime << " - Number: " << n << ", is prime: " << (is_prime ? "Yes" : "No") << ", Time: " << runtime.count() << "ms - total_correct:" << total_correct << "\n";
    }
 
    file.close();
 
-   cout << "  ========================= " << endl;
-   cout << "  _Total test        : " << n << endl;
-   cout << "  _Total correct     : " << total_correct << endl;
-   cout << "  _Total runtime     : " << total_runtime << " ms" << endl;
-   cout << "  ========================= " << endl;
-   cout << "  [>] Average runtime: " << total_runtime / n << " ms" << endl;
-   cout << "  [>] Average correct: " << float(total_correct) / n * 100 << "%" << endl;
+   cout << "Done !" << endl
+        << endl;
+
+   cout << "=================================" << endl;
+   cout << "- Total test        : " << n << endl;
+   cout << "- Total correct     : " << total_correct << endl;
+   cout << "- Total runtime     : " << total_runtime << " ms" << endl;
+   cout << "=================================" << endl;
+   cout << "[>] Average runtime: " << total_runtime / n << " ms" << endl;
+   cout << "[>] Average correct: " << float(total_correct) / n * 100 << "%" << endl;
 }
 
 // ======================
@@ -167,7 +167,8 @@ int main()
    cout << "  |  Probabilistic primality test   |" << endl;
    cout << "  |                                 |" << endl;
    cout << "  \\=================================/" << endl;
-   cout << "       \\_______QuanBlue_______/" << endl;
+   cout << "       \\_______QuanBlue_______/" << endl
+        << endl;
 
    srand(time(NULL));
    benchmark();

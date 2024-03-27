@@ -41,13 +41,14 @@
 <details open>
 <summary>Table of Contents</summary>
 
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Run Locally](#run-locally)
-- [Roadmap](#roadmap)
-- [Contributors](#contributors)
-- [Credits](#credits)
-- [License](#license)
+-  [Getting Started](#getting-started)
+   -  [Prerequisites](#prerequisites)
+   -  [Run Locally](#run-locally)
+-  [Benchmark](#benchmark)
+-  [Roadmap](#roadmap)
+-  [Contributors](#contributors)
+-  [Credits](#credits)
+-  [License](#license)
 
 # Getting Started
 
@@ -59,23 +60,52 @@ Before proceeding with the installation and usage of this project, ensure that y
 
 ## Run Locally
 
-**Step 1:** Compile program, it will generate `miller_rabin` file (executable file) from `miller_rabin.cpp`:
+**Step 1:** Extract dataset file at `./dataset/billion-primes.7z`
+
+> You can download at [here](https://github.com/bauripalash/bpp?fbclid=IwAR0z5uRxI1fYtzv9THQb5gK9iGbNGbEhZXM6av7V26RSVVOwcLU79AcAYlA_aem_AR9i2LabMtvQqOqQlC2kkDWeMgFsbRFR5XC9axt7Q_q6G3IbwCCDX9wqDMobiJ_M_UZFfk3cQsL3JQX2wo7btHh-)
+
+**Step 2:** Compile program, it will generate `miller_rabin` file (executable file) from `miller_rabin.cpp`:
 
 ```bash
 g++ -o miller_rabin miller_rabin.cpp
 ```
 
-**Step 2:** Run executable file:
+**Step 3:** Run executable file and wait :))
 
 ```bash
 ./miller_rabin
 ```
 
+# Benchmark
+
+Using a simple C++ script which took about `4 minute 51 seconds`
+
+```txt
+  /=================================\
+  |                                 |
+  |          MILLER RABIN           |
+  |      ____________________       |
+  |  Probabilistic primality test   |
+  |                                 |
+  \=================================/
+       \_______QuanBlue_______/
+
+
+Benchmarking...Done!
+
+=================================
+- Total test        : 1000000000
+- Total correct     : 999998700
+- Total runtime     : 291096 ms
+=================================
+[>] Average runtime: 0.000291096 ms
+[>] Average correct: 99.9999%
+```
+
 # Roadmap
 
 -  [x] Miller Rabin algorithm
--  [ ] Handle Big number
--  [ ] Benchmark
+-  [x] Benchmark
 
 # Contributors
 
@@ -87,10 +117,10 @@ Contributions are always welcome!
 
 # Credits
 
--  [Miller-Rabin algorithm](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test)
 -  [Cpp](https://www.cplusplus.com/)
 -  [g++](https://gcc.gnu.org/)
--  [List of small prime](https://t5k.org/lists/small/)
+-  [Miller-Rabin algorithm](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test)
+-  [Billion prime](https://github.com/bauripalash/bpp?fbclid=IwAR0z5uRxI1fYtzv9THQb5gK9iGbNGbEhZXM6av7V26RSVVOwcLU79AcAYlA_aem_AR9i2LabMtvQqOqQlC2kkDWeMgFsbRFR5XC9axt7Q_q6G3IbwCCDX9wqDMobiJ_M_UZFfk3cQsL3JQX2wo7btHh-)
 -  [Generate prime](https://bigprimes.org/)
 -  [Test is prime online](https://www.dcode.fr/primality-test)
 
