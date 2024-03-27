@@ -40,8 +40,10 @@ long power_mod(long long b, long e, long m)
    return result;
 }
 
-// ======================
-// >>>>>>> Parse n <<<<<<
+// ============================
+// >>>>>>>>>> Parse n <<<<<<<<<
+// >> Parse n to 2^k * m + 1 <<
+//
 // Input: n, k, m
 // Output: 2^k * m + 1
 void parse_n(long long n, int &k, long long &m)
@@ -64,7 +66,6 @@ void parse_n(long long n, int &k, long long &m)
 // Output: is n prime?
 bool miller_rabin(long long n)
 {
-
    // check if n even or = 2
    if (n == 2)
       return true;
@@ -96,75 +97,79 @@ bool miller_rabin(long long n)
 // >>>>>> Benchmark <<<<<
 void benchmark()
 {
+   cout << "\n\n  Benchmarking..." << endl;
 
    double total_runtime = 0;
    int total_correct = 0;
-   int total_test = 0;
+   long long n = 0;
+   long long max_n = 1000000000;
+   string datasets_file = "./dataset/billion-primes.txt";
 
    // open datasets file
-   ifstream file("./dataset/100_18digits_primes.txt");
+   ifstream file(datasets_file);
 
-   // test each line in datasets
-   string line;
-   while (getline(file, line))
+   if (!file.is_open())
    {
-      total_test++;
-      long long n = stoll(line);
+      cout << "  [!] Datasets file does not exist." << endl;
+      file.close();
+      return;
+   }
 
-      auto start = high_resolution_clock::now();
+   string line;
+   getline(file, line);
+   long long prime = stoll(line);
+
+   // benchmark
+   while (n < max_n)
+   {
+      n++;
+
+      auto start_clock = high_resolution_clock::now();
       bool is_prime = miller_rabin(n);
-      auto end = high_resolution_clock::now();
+      auto end_clock = high_resolution_clock::now();
 
-      // Calculate duration
-      duration<double, milli> ms_double = end - start;
+      // Calculate miller-rabin runtime (ms)
+      duration<double, milli> runtime = end_clock - start_clock;
 
-      if (is_prime)
-      {
+      // check if miller-rabin return correct output
+      if ((is_prime && n == prime) || (!is_prime && n != prime))
          total_correct++;
-      }
 
-      total_runtime += ms_double.count();
+      // update new prime in file
+      if ((n >= prime) && getline(file, line))
+         prime = stoll(line);
+
+      total_runtime += runtime.count();
 
       // Print the number and whether it's prime
-      cout << "Number: " << n << ", is prime: " << (is_prime ? "Yes" : "No")
-           << ", Time: " << ms_double.count() << "ms\n";
+      // cout << "Prime: " << prime << " - Number: " << n << ", is prime: " << (is_prime ? "Yes" : "No") << ", Time: " << runtime.count() << "ms - total_correct:" << total_correct << "\n";
    }
 
    file.close();
 
-   cout << " ================== " << endl;
-   cout << "Total test: " << total_test << endl;
-   cout << "Total correct: " << total_correct << endl;
-   cout << "Average runtime: " << total_runtime / total_test << " ms\n";
-   cout << "Average correct: " << float(total_correct) / total_test * 100 << "%\n";
+   cout << "  ========================= " << endl;
+   cout << "  _Total test        : " << n << endl;
+   cout << "  _Total correct     : " << total_correct << endl;
+   cout << "  _Total runtime     : " << total_runtime << " ms" << endl;
+   cout << "  ========================= " << endl;
+   cout << "  [>] Average runtime: " << total_runtime / n << " ms" << endl;
+   cout << "  [>] Average correct: " << float(total_correct) / n * 100 << "%" << endl;
 }
 
 // ======================
 // >>>>>>> Main <<<<<<
 int main()
 {
-   // srand(time(NULL));
+   cout << "  /=================================\\" << endl;
+   cout << "  |                                 |" << endl;
+   cout << "  |          MILLER RABIN           |" << endl;
+   cout << "  |      ____________________       |" << endl;
+   cout << "  |  Probabilistic primality test   |" << endl;
+   cout << "  |                                 |" << endl;
+   cout << "  \\=================================/" << endl;
+   cout << "       \\_______QuanBlue_______/" << endl;
 
-   // long long n;
-
-   // cout << "=================================================" << endl;
-   // cout << "==                 Miller Rabin                ==" << endl;
-   // cout << "==         ---------------------------         ==" << endl;
-   // cout << "=================================================" << endl;
-
-   // cout << "\n> Input n:";
-
-   // // Flush input to prevent infinity loop
-   // cin >> n;
-   // cin.clear();
-   // fflush(stdin);
-
-   // if (miller_rabin(n))
-   //    cout << n << " is prime";
-   // else
-   //    cout << n << " is not prime";
-
-   // cout << endl;
+   srand(time(NULL));
    benchmark();
 
    return 0;
