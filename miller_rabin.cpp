@@ -17,21 +17,21 @@ using namespace std::chrono;
 
 // ======================
 // >>>>>> Power Mod <<<<<
-// Input: base (b), exponent (e), modulus (m)
+// Input: base (b), exponent (exp), modulus (m)
 // Output: b^e mod m
-long power_mod(long long base, long exponent, long modulus)
+long power_mod(long long b, long exp, long m)
 {
    long result = 1;
-   base %= modulus;
+   b %= m;
 
-   while (exponent > 0)
+   while (exp > 0)
    {
       // Check odds
-      if (exponent & 1)
-         result = result * base % modulus;
+      if (exp & 1)
+         result = result * b % m;
 
-      base = base * base % modulus;
-      exponent >>= 1;
+      b = b * b % m;
+      exp >>= 1;
    }
 
    return result;
@@ -41,53 +41,72 @@ long power_mod(long long base, long exponent, long modulus)
 // >>>>>>>>>> Parse n <<<<<<<<<
 // >> Parse n to 2^k * m + 1 <<
 //
-// Input: parsing_number (n), k, m
-// Output: 2^k * m + 1
-void parse_number(long long parsing_number, int &k, long long &m)
+// Input: n, k, m
+// Output: 2^s * d + 1
+void parse_number(long long n, int &s, long long &d)
 {
-   parsing_number = parsing_number - 1;
+   n = n - 1;
 
    // while n even
-   while (parsing_number % 2 == 0)
+   while (n % 2 == 0)
    {
-      k++;
-      parsing_number = parsing_number / 2;
+      s++;
+      n = n / 2;
    }
 
-   m = parsing_number;
+   d = n;
 }
 
 // ======================
 // >>>> Miller Rabin <<<<
-// Input: checking_number
-// Output: is checking_number prime?
-bool miller_rabin(long long checking_number)
+// Input:
+//   + checking number (n)
+//   + number of round of testing to perform (k)
+// Output:
+//   + True: probably prime
+//   + False: composite
+bool miller_rabin(long long n, int k)
 {
    // check if n even or = 2
-   if (checking_number == 2)
+   if (n == 2)
       return true;
-   else if (checking_number < 2 || checking_number % 2 == 0)
+   else if (n < 2 || n % 2 == 0)
       return false;
 
-   int k = 0;
-   long long m = 0;
-   parse_number(checking_number, k, m);
-
-   long long random_number = rand() % (checking_number - 1) + 1;
-   long long x = power_mod(random_number, m, checking_number);
-
-   if (x % checking_number == 1)
-      return true;
-
-   for (int i = 0; i < k; i++)
+   // repeat k times
+   long long y = 0;
+   int testing_round = 0;
+   while (testing_round < k)
    {
-      if (x % checking_number == checking_number - 1)
-         return true;
+      // Get s and d
+      int s = 0;
+      long long d = 0;
+      parse_number(n, s, d);
 
-      x = power_mod(x, 2, checking_number);
+      // calc a and x
+      long long a = rand() % (n - 1) + 1;
+      // cout << "round: " << testing_round << "- a: " << a << endl;
+      long long x = power_mod(a, d, n);
+
+      // repeat s times
+      for (int i = 0; i < s; i++)
+      {
+         y = power_mod(x, 2, n);
+
+         // nontrivial square root of 1 modulo n
+         if ((y == 1) && (x != 1) && (x != n - 1))
+            return false;
+
+         x = y;
+      }
+
+      if (y != 1)
+         return false;
+
+      testing_round++;
    }
 
-   return false;
+   return true;
 }
 
 // ======================
@@ -96,11 +115,14 @@ void benchmark()
 {
    cout << "Benchmarking... " << flush;
 
+   int number_of_testing_round = 3;
    double total_runtime = 0;
    long long total_test = 0;
    long long total_correct_output = 0;
    long long checking_number = 0;
+   // long long max_check_number = 10;
    long long max_check_number = 1000000000;
+   // string datasets_file = "./dataset/test.txt";
    string datasets_file = "./dataset/billion-primes.txt";
 
    // open datasets file
@@ -124,7 +146,7 @@ void benchmark()
       total_test++;
 
       auto start_clock = high_resolution_clock::now();
-      bool is_checking_number_prime = miller_rabin(checking_number);
+      bool is_checking_number_prime = miller_rabin(checking_number, number_of_testing_round);
       auto end_clock = high_resolution_clock::now();
 
       // Calculate miller-rabin runtime (ms)
@@ -139,6 +161,8 @@ void benchmark()
          prime = stoll(line);
 
       total_runtime += runtime.count();
+
+      // cout << " Number: " << checking_number << ", is prime: " << (is_checking_number_prime ? "Yes" : "No") << ", Time: " << runtime.count() << "ms - total_correct:" << total_correct_output << "\n";
    }
 
    file.close();
