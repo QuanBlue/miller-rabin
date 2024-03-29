@@ -78,28 +78,56 @@ g++ -o miller_rabin miller_rabin.cpp
 
 # Benchmark
 
-Using a simple C++ script which took about `4 minute 51 seconds`
+Using a simple C++ script with `3 testing rounds` and `20 benchmark rounds`, which took about total `02:10:09 (7808.97 sec)`
 
-```txt
-  /=================================\
-  |                                 |
-  |          MILLER RABIN           |
-  |      ____________________       |
-  |  Probabilistic primality test   |
-  |                                 |
-  \=================================/
-       \_______QuanBlue_______/
+> **OS:** Ubuntu 22.04.4 LTS x86_64  
+> **CPU:** Intel i7-9750H (12) @ 4.500GHz
 
+```
+      /=================================\
+      |                                 |
+      |          MILLER RABIN           |
+      |      ____________________       |
+      |  Probabilistic primality test   |
+      |                                 |
+      \=================================/
+           \_______QuanBlue_______/
 
-Benchmarking...Done!
+================[ BENCHMARK ]=================
+                     ***
+[+] Benchmarking round <1>...Done! - Run in 388319.787326 (ms)
+[+] Benchmarking round <2>...Done! - Run in 384664.877112 (ms)
+[+] Benchmarking round <3>...Done! - Run in 382277.636380 (ms)
+[+] Benchmarking round <4>...Done! - Run in 379976.218502 (ms)
+[+] Benchmarking round <5>...Done! - Run in 380489.474973 (ms)
+[+] Benchmarking round <6>...Done! - Run in 389533.944643 (ms)
+[+] Benchmarking round <7>...Done! - Run in 391716.273947 (ms)
+[+] Benchmarking round <8>...Done! - Run in 394091.112519 (ms)
+[+] Benchmarking round <9>...Done! - Run in 397559.886904 (ms)
+[+] Benchmarking round <10>...Done! - Run in 398380.716659 (ms)
+[+] Benchmarking round <11>...Done! - Run in 394647.207036 (ms)
+[+] Benchmarking round <12>...Done! - Run in 396271.656236 (ms)
+[+] Benchmarking round <13>...Done! - Run in 400568.897206 (ms)
+[+] Benchmarking round <14>...Done! - Run in 390854.019236 (ms)
+[+] Benchmarking round <15>...Done! - Run in 389165.656980 (ms)
+[+] Benchmarking round <16>...Done! - Run in 391387.991854 (ms)
+[+] Benchmarking round <17>...Done! - Run in 390859.553101 (ms)
+[+] Benchmarking round <18>...Done! - Run in 382307.175902 (ms)
+[+] Benchmarking round <19>...Done! - Run in 395381.857096 (ms)
+[+] Benchmarking round <20>...Done! - Run in 390516.020479 (ms)
+----------------------------------------------
+Total runtime for 20 benchmark rounds: 7808969.964091 (ms)
 
-=================================
-- Total test        : 1000000000
-- Total correct     : 999998700
-- Total runtime     : 291096 ms
-=================================
-[>] Average runtime: 0.000291096 ms
-[>] Average correct: 99.9999%
+================[ STATISTICS ]================
+            *** Average result ***
+ROUND
+[+] Total test     : 1000000000
+[+] Total correct  : 999999992
+[+] Total runtime  : 328557.100229 (ms)
+----------------------------------------------
+ALGORITHM
+[+] Average runtime: 0.000329 (ms)
+[+] Average correct: 100.000000%
 ```
 
 # Roadmap
