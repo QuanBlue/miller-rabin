@@ -78,7 +78,9 @@ g++ -o miller_rabin miller_rabin.cpp
 
 # Benchmark
 
-Using a simple C++ script with `3 testing rounds` and `20 benchmark rounds`, which took about total `02:10:09 (7808.97 sec)`
+Benchmarking on dataset from _1 to 1 billion_
+
+Using a simple C++ script with `3 testing rounds` and `20 benchmark rounds`, which took about total **02:10:09 (7808.97 sec)** :))
 
 > **OS:** Ubuntu 22.04.4 LTS x86_64  
 > **CPU:** Intel i7-9750H (12) @ 4.500GHz
@@ -129,6 +131,8 @@ ALGORITHM
 [+] Average runtime: 0.000329 (ms)
 [+] Average correct: 100.000000%
 ```
+
+_(Program output)_
 
 # Roadmap
 
