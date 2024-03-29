@@ -148,9 +148,7 @@ void benchmark(int number_of_benchmark_round)
       total_correct_output[round] = 0;
 
       long long checking_number = 0;
-      // long long max_check_number = 10;
       long long max_check_number = 1000000000;
-      // string datasets_file = "./dataset/test.txt";
       string datasets_file = "./dataset/billion-primes.txt";
 
       // open datasets file
